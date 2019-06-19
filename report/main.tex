@@ -1,0 +1,132 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lachaise Assignment
+% LaTeX Template
+% Version 1.0 (26/6/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Marion Lachaise & François Févotte
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{MAE001: Modelagem Matemática em Finanças I} % Title of the assignment
+\date{Universidade Federal do Rio de Janeiro (UFRJ) --- \today} % University, school and/or department name(s) and a date
+
+\author{Ramon Duarte de Melo\\ \texttt{ramonduarte@poli.ufrj.br}} % Author name and email address
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\section*{Introdução} % Unnumbered section
+
+O objetivo do Projeto 4 é implementar, avaliar e comparar o modelo do \emph{Capital Asset Pricing Model} com os dados fornecidos pelo mundo real, realizando comparações de estruturas de termo e produzindo gráficos com tais observações. 
+
+Para tal, foi utilizada a linguagem \emph{Python 3.6.7}, com os módulos \emph{numpy} (métodos numéricos), \emph{pandas} (manipulação de dados), \emph{scipy} (fórmulas científicas) e \emph{matplotlib.pyplot} (visualização de dados).
+
+Os dados utilizados para a confecção dos gráficos foram obtidos através do site do Tesouro Nacional (\textsl{tesouro.gov.br}). Os procedimentos de execução estão descritos num arquivo \texttt{.ipynb}, que requer o módulo \emph{Jupyter Notebook} para ser executado.
+
+
+O código utilizado neste trabalho, bem como o deste relatório e as imagens geradas, foi aberto e disponibilizado publicamente no repositório https://github.com/ramonduarte/mmftrab4.
+
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section*{Atividade \emph{1}} % Numbered section
+
+Nesta atividade, a estrutura a termo da taxa de juros de títulos prefixados do Tesouro Nacional (\emph{LTNs}, sem prêmios semestrais) foi adquirida da web e dela extraída a taxa de juros dos anos de 2016, 2017 e 2018 para os próximos 6 a 7 anos.
+Como alguns títulos não são emitidos no início do ano (sobretudo os de mais longa duração até o exercício), as datas foram padronizadas para o mesmo dia em cada ano, 2º de fevereiro.
+A escolha por esta data deu-se por ser o primeiro dia útil onde todos os títulos foram disponibilizados.
+
+Os arquivos foram obtidos em formato \texttt{.xls} (padrão Microsoft Excel 2003), parseados e plotados em gráficos $t \times r$.
+Para cada gráfico, uma curva \emph{spline} cúbica que perpassa todos os pontos também foi plotada.
+
+
+\begin{figure}[]
+	\includegraphics[width=0.6\linewidth]{Figure_0.png}
+	\centering
+	
+	\caption{Gráfico $t \times r$ para ativos \textbf{LTN} com data de emissão 02/02/2016.}
+	\label{}
+\end{figure}
+
+\begin{figure}[]
+	\includegraphics[width=0.6\linewidth]{Figure_1.png}
+	\centering
+	
+	\caption{Gráfico $t \times r$ para ativos \textbf{LTN} com data de emissão 02/02/2017.}
+	\label{}
+\end{figure}
+
+\begin{figure}[]
+	\includegraphics[width=0.6\linewidth]{Figure_2.png}
+	\centering
+	
+	\caption{Gráfico $t \times r$ para ativos \textbf{LTN} com data de emissão 02/02/2018.}
+	\label{}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+
+\section*{Atividade \emph{b}}
+
+Para esta atividade, o processo utilizado foi o mesmo do da anterior.
+As únicas mudanças foram:
+
+\begin{itemize}
+	\item Uma subbiblioteca do \emph{matplotlib}, externa ao \emph{pyplot}, teve de ser utilizada para gerar o gráfico em 3D, porque o \emph{pyplot} não gera gráficos 3D interativos, necessários para a escolha da melhor perspectiva.
+	\item Todas as opções encontradas para o ativo \textbf{PETR4 ON} foram utilizadas, desde que estivessem precificadas após o fechamento do pregão da Bolsa de Valores de São Paulo em 06/06/2019.
+\end{itemize}
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{Figure_3.png}
+	\centering
+	
+	\caption{\textbf{Superfície de volatilidade}: séries $K \times \sigma$ separadas por data de exercício.}
+	\label{}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\section*{Atividade c}
+
+Com exceção da \emph{Figura 3}, foi possível enxergar o \emph{smile} em todos os gráficos plotados.
+Como o ativo \textbf{PETR4 ON} é bastante negociado na bolsa de valores, suas distribuições tendem a se aproximarem do previsto pelo modelo teórico.
+É justamente por isso que, na \emph{Figura 3}, a observação do \emph{smile} é mais difícil, pois as opções com exercício nesta data - mais distante - são menos negociadas e, portanto, não formam pontos suficientes para a construção da curva com visibilidade.
+
+Na \emph{Figura 4}, inclusive, é possível notar a formação de várias curvas deste tipo ao longo das datas de exercício, bem como seu rareamento conforme o aumento do prazo.
+
+
+\end{document}
