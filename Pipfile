@@ -16,6 +16,7 @@ xlrd = "*"
 ipython = "*"
 sympy = "*"
 nose = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.6"
