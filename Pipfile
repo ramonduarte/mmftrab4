@@ -17,6 +17,11 @@ ipython = "*"
 sympy = "*"
 nose = "*"
 scikit-learn = "*"
+statsmodels = "==0.10.0rc2"
+pandas-datareader = "*"
 
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
